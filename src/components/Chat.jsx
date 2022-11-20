@@ -1,21 +1,22 @@
 import Messages from "./Messages";
 import Input from "./Input";
-
+import { useContext } from "react";
+import { ChatContext } from "../context/ChatContext";
 
 
 const Chat = () => {
 
+    const { data } = useContext(ChatContext);
 
 
-    
     return (
         <div className="chat">
             <div className="chatInfo">
-                <img src="https://images.pexels.com/photos/5540995/pexels-photo-5540995.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
-                <span>Jane</span>
+                {data.contact.photoURL ? <img src={data.contact.photoURL} alt="" /> : null}
+                <span>{data.contact?.displayName}</span>
             </div>
-            <Messages/>
-            <Input/>
+            <Messages />
+            <Input />
         </div>
     )
 }

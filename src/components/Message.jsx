@@ -1,20 +1,32 @@
+import { useEffect, useRef } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 
 
 
-const Message = () => {
 
+const Message = ({messageInfo, temp}) => {
+/* console.log(temp); */
 
+    const {currentUser} = useContext(AuthContext);
+    const {data} = useContext(ChatContext);
+    /* console.log(data.contact.uid); */
+    const ref = useRef();
+    useEffect(() => { // прокрутка к новому сообщению
+        ref.current?.scrollIntoView({behavior: "smooth"})
+    }, [messageInfo[1].message])
+   
 
     
     return (
-        <div className="message owner">
+        <div ref={ref} className="message owner" >
             <div className="messageInfo">
-                <img src="https://images.pexels.com/photos/14169804/pexels-photo-14169804.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
+                <img src={messageInfo[1].owner == 1 ? data.contact.photoURL : currentUser.photoURL} alt="" />
                 <span>just now</span>
             </div>
             <div className="messageContent">
-                <p>hello</p>
-                <img src="https://images.pexels.com/photos/5769387/pexels-photo-5769387.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="" />
+                <p>{/* temp == data.contact.uid &&  */messageInfo[1].message}</p>
             </div>
         </div>
     )

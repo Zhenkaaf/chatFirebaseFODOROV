@@ -14,7 +14,13 @@
     }
 }
 
-
+* {
+    margin: 0;
+    padding: 0;
+}
+img {
+    vertical-align: bottom; //убирает стандартный отступ у картинкки
+}   
 
 .loginContainer {
     background-color: coral;
@@ -53,6 +59,8 @@
         .sidebar {
             flex: 1;
             background-color: gray;
+            overflow: hidden;
+           /*   overflow-y: scroll; */
 
             .navbar {
                 display: flex;
@@ -88,6 +96,10 @@
 
                     }
                 }
+            }
+            .chats {
+               
+               
             }
             .userChat {
                 padding: 10px;
@@ -130,7 +142,8 @@
 
             .chatInfo {
                 padding: 15px;
-               
+                min-height: 50px;
+                
 
                 img {
                     width: 50px;
@@ -145,6 +158,7 @@
                 background-color: beige;
                 height: calc(100% - 190px);
                 overflow-y: scroll;
+                background-color: chartreuse;
                 //190 - высота chatInfo + input + их паддинги
 
                 .message {
