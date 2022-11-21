@@ -8,6 +8,7 @@ import { ChatContext } from '../context/ChatContext';
 const Messages = () => {
     const [messages, setMessages] = useState(null);
     const { data } = useContext(ChatContext);
+   
 
     useEffect(() => {
 
@@ -31,9 +32,6 @@ const Messages = () => {
             {messages && messages.map((m, index) => (
                 <Message key={index} messageInfo={m} />
             ))}
-            {/* <Message />
-            <Message />
-            <Message /> */}
         </div>
     )
 }

@@ -7,7 +7,7 @@ import { createContext, useReducer } from "react";
 export const ChatContext = createContext(); // вернет объект с компонентами Provider and Consumer
 
 
-export const ChatContextProvider = ({ children }) => {
+export const ChatContextProvider = ({ children }) => { //ChatContextProvider - оборачиваем index
     const INITIAL_STATE = {
         contact: {}
     }

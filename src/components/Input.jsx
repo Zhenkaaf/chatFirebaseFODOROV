@@ -5,13 +5,13 @@ import { db } from "../firebase";
 
 
 const Input = () => {
-console.log('INPUT');
+
     const [text, setText] = useState('');
     const { data } = useContext(ChatContext);
- 
+
 
     const handleSend = async () => {
-       
+
         try {
             await updateDoc(doc(db, "users", data.contact.uid), { //Чтобы обновить некоторые поля документа без перезаписи всего документа
                 messages: arrayUnion({  //Если ваш документ содержит поле массива, arrayUnion() добавляет элементы в массив
@@ -24,7 +24,7 @@ console.log('INPUT');
 
             const res = await fetch('https://api.chucknorris.io/jokes/random');
             const answer = await res.json();
-           
+
             setTimeout(async () => {
                 await updateDoc(doc(db, "users", data.contact.uid), {
                     messages: arrayUnion({
@@ -39,9 +39,7 @@ console.log('INPUT');
         catch (err) {
             console.log('INPUT-----ERROR', err);
         }
-        
     }
-
 
 
     return (

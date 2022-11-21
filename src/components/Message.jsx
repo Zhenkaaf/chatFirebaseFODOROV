@@ -6,27 +6,46 @@ import { ChatContext } from "../context/ChatContext";
 
 
 
-const Message = ({messageInfo, temp}) => {
-/* console.log(temp); */
+const Message = ({ messageInfo }) => {
 
-    const {currentUser} = useContext(AuthContext);
-    const {data} = useContext(ChatContext);
-    /* console.log(data.contact.uid); */
+    const { currentUser } = useContext(AuthContext);
+    const { data } = useContext(ChatContext);
     const ref = useRef();
-    useEffect(() => { // прокрутка к новому сообщению
-        ref.current?.scrollIntoView({behavior: "smooth"})
-    }, [messageInfo[1].message])
-   
 
-    
+    const GetDate = (seconds) => {
+        
+        let date = new Date( seconds * 1000 );
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let year = date.getFullYear();
+        let strYear = year.toString();
+        let lastTwoNumbersOfYear = strYear.slice(-2);
+
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes.toString().padStart(2, '0');
+        let strTime = hours + ':' + minutes + ' ' + ampm;
+
+        return `${month}/${day}/${lastTwoNumbersOfYear}, ${strTime}`;
+    }
+
+    useEffect(() => { // прокрутка к новому сообщению
+        ref.current?.scrollIntoView({ behavior: "smooth" })
+    }, [messageInfo[1].message])
+
+
     return (
         <div ref={ref} className="message owner" >
             <div className="messageInfo">
                 <img src={messageInfo[1].owner == 1 ? data.contact.photoURL : currentUser.photoURL} alt="" />
-                <span>just now</span>
+                <p>{GetDate(messageInfo[1].time.seconds)}</p>
             </div>
             <div className="messageContent">
-                <p>{/* temp == data.contact.uid &&  */messageInfo[1].message}</p>
+                <p>{messageInfo[1].message}</p>
+               
             </div>
         </div>
     )

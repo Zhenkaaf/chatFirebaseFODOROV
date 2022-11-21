@@ -1,19 +1,14 @@
-import Chats from "./Chats";
+import Contacts from "./Contacts";
 import Navbar from "./Navbar";
 import Search from "./Search";
 
-
-
 const Sidebar = () => {
-
-
-
 
     return (
         <div className="sidebar">
             <Navbar />
             <Search />
-            <Chats />
+            <Contacts />
         </div>
     )
 }

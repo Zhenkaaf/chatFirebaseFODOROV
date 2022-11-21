@@ -5,11 +5,47 @@ import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase";
 
 
-const Chats = () => {
+const Contacts = () => {
 
     const [contacts, setContacts] = useState([]);
     const { dispatch } = useContext(ChatContext);
+   
 
+   /*  if (contacts.length !=0) {
+        console.log(contacts[0].messages.slice(-1)[0].time.seconds);
+        let ttt = contacts[0].messages.slice(-1)[0].time.seconds;
+        let date = new Date( ttt * 1000 );
+
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let year = date.getFullYear();
+        let strYear = year.toString();
+        let lastTwoNumbersOfYear = strYear.slice(-2);
+        console.log(`${renameMonth[month]} ${day}, ${year}`);
+    } */
+    const GetDate = (seconds) => {
+        const renameMonth = {
+            1: 'Jan',
+            2: 'Feb',
+            3: 'Mar',
+            4: 'Apr',
+            5: 'May',
+            6: 'Jun',
+            7: 'Jul',
+            8: 'Aug',
+            9: 'Sep',
+            10: 'Oct',
+            11: 'Nov',
+            12: 'Dec'
+        }
+        
+        let date = new Date( seconds * 1000 );
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let year = date.getFullYear();
+        return `${renameMonth[month]} ${day}, ${year}`;
+    }
+      
 
     useEffect(() => { //получим объект с данными обновляющимися после каждого внесения изменения в firebase
         const q = query(collection(db, "users"));
@@ -20,6 +56,9 @@ const Chats = () => {
             });
             setContacts(users);
         });
+        return () => {
+            unsubscribe();
+        }
     }, [])
 
 
@@ -45,7 +84,7 @@ const Chats = () => {
                     <div className="userChatInfo">
                         <span>{contact.displayName}</span>
                         {contact.messages.length ? <p>{contact.messages.slice(-1)[0].message}</p> : null}
-                        {contact.messages.length ? <p>{contact.messages.slice(-1)[0].time.seconds}</p> : null}
+                        {contact.messages.length ? <p>{GetDate(contact.messages.slice(-1)[0].time.seconds)}</p> : null}
                     </div>
                 </div>
             ))
@@ -54,6 +93,6 @@ const Chats = () => {
     )
 }
 
-export default Chats;
+export default Contacts;
 
 

@@ -7,6 +7,8 @@ import { auth } from "../firebase";
 //После подписки компоненты получают возможность получать значение контекста от ближайшего к ним Provider
 export const AuthContext = createContext(); // вернет объект с компонентами Provider and Consumer
 
+
+
 export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState({});
 
@@ -22,5 +24,4 @@ export const AuthContextProvider = ({ children }) => {
             {children}
         </AuthContext.Provider>
     )
-
 };

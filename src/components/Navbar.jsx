@@ -4,12 +4,9 @@ import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase";
 
 
-
 const Navbar = () => {
 
    const {currentUser} = useContext(AuthContext);
-console.log(currentUser.photoURL == true);
-    
     return (
         <div className="navbar">
             <div className="user">
