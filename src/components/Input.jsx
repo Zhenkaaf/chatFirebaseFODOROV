@@ -2,13 +2,28 @@ import { useContext, useState } from "react";
 import { ChatContext } from "../context/ChatContext";
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { db } from "../firebase";
+import { useEffect } from "react";
 
 
 const Input = () => {
 
     const [text, setText] = useState('');
     const { data } = useContext(ChatContext);
+    const [stateSendBtn, setStateSendBtn] = useState(true);
 
+
+    useEffect(() => {
+        if (text.length > 0 && text.match(/^\s+$/) === null) { // проверка на пробел
+            setStateSendBtn(false);
+        }
+        else if (text.length == 0) {
+            setStateSendBtn(true);
+        }
+    }, [text])
+
+    const handleKeyDown = (e) => {
+        e.code === 'Enter' && text.length > 0 && text.match(/^\s+$/) === null && handleSend();
+    }
 
     const handleSend = async () => {
 
@@ -44,8 +59,8 @@ const Input = () => {
 
     return (
         <div className="input">
-            <input type="text" placeholder="Type your message" onChange={e => setText(e.target.value)} value={text} />
-            <button onClick={handleSend}>Send</button>
+            <input type="text" placeholder="Type your message" onKeyDown={handleKeyDown} onChange={e => setText(e.target.value)} value={text} />
+            <button disabled={stateSendBtn} onClick={handleSend}>Send</button>
         </div>
     )
 }
