@@ -1,4 +1,4 @@
-import { useContext, useEffect,  useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Message from './Message';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase';
@@ -8,8 +8,8 @@ import { ChatContext } from '../context/ChatContext';
 const Messages = () => {
     const [messages, setMessages] = useState(null);
     const { data } = useContext(ChatContext);
-   
 
+   
     useEffect(() => {
 
         if (!data.contact.uid) {
@@ -32,6 +32,7 @@ const Messages = () => {
             {messages && messages.map((m, index) => (
                 <Message key={index} messageInfo={m} />
             ))}
+            
         </div>
     )
 }

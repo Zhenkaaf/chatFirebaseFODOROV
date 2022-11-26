@@ -9,6 +9,7 @@ const Contacts = () => {
 
     const [contacts, setContacts] = useState([]);
     const { dispatch } = useContext(ChatContext);
+    console.log(contacts);
    
 
    /*  if (contacts.length !=0) {
@@ -48,6 +49,7 @@ const Contacts = () => {
       
 
     useEffect(() => { //получим объект с данными обновляющимися после каждого внесения изменения в firebase
+        console.log('work');
         const q = query(collection(db, "users"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const users = [];
@@ -55,6 +57,8 @@ const Contacts = () => {
                 users.push(doc.data());
             });
             setContacts(users);
+            
+         
         });
         return () => {
             unsubscribe();

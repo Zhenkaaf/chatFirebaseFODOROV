@@ -3,14 +3,15 @@ import { ChatContext } from "../context/ChatContext";
 import { doc, updateDoc, arrayUnion, Timestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect } from "react";
-
+import addNotification from 'react-push-notification';
+import sound from './../sounds/soobshenie-telegram.mp3';
 
 const Input = () => {
 
     const [text, setText] = useState('');
     const { data } = useContext(ChatContext);
     const [stateSendBtn, setStateSendBtn] = useState(true);
-
+    const song = new Audio(sound);
 
     useEffect(() => {
         if (text.length > 0 && text.match(/^\s+$/) === null) { // проверка на пробел
@@ -31,7 +32,7 @@ const Input = () => {
             await updateDoc(doc(db, "users", data.contact.uid), { //Чтобы обновить некоторые поля документа без перезаписи всего документа
                 messages: arrayUnion({  //Если ваш документ содержит поле массива, arrayUnion() добавляет элементы в массив
                     message: text,
-                    owner: 0,
+                    owner: '0',
                     time: Timestamp.now()
                 })
             });
@@ -44,11 +45,20 @@ const Input = () => {
                 await updateDoc(doc(db, "users", data.contact.uid), {
                     messages: arrayUnion({
                         message: answer.value,
-                        owner: 1,
+                        owner: '1',
                         time: Timestamp.now()
                     })
                 });
-            }, 10000);
+
+                song.play();
+                addNotification({ // заменить например создать новую базу данных с одним сообщением, на него слушатель, перезавписывать каждый раз на новое
+                    title: data.contact.displayName,
+                    subtitle: 'This is a subtitle',
+                    message: (answer.value.length > 60) ? answer.value.slice(0, 65 - 1) + '…' : answer.value, 
+                    theme: 'darkblue',
+                    native: false // when using native, your OS will handle theming.
+                });
+            }, 3000);
         }
 
         catch (err) {
