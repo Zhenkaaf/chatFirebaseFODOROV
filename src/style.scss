@@ -44,7 +44,6 @@ img {
 
 
 .home {
-    background-color: aquamarine;
     height: 100vh;
     display: flex;
     align-items:  center;
@@ -57,10 +56,10 @@ img {
 
         .sidebar {
             flex: 1;
-            background-color: gray;
+           
             border-right: 1px solid #dedcdd;
-           /*  overflow: hidden; */
-           /*   overflow-y: scroll; */
+            overflow: hidden;
+             
 
             .navbar {
                 display: flex;
@@ -70,17 +69,48 @@ img {
                 padding: 15px;
 
                 .user {
+                    display: flex;
+
+                    .user__img {
+                        position: relative;
+                    }
 
                     img {
-                        height: 24px;
-                        width: 24px;
+                        height: 50px;
+                        width: 50px;
                         border-radius: 50%;
                         object-fit: cover;
                     }
-                    .name {
+
+                    .user__icon {
+                        color: #6ba175;
+                        position: absolute;
+                        top: 32px;
+                        left: 40px;
+                    }
+
+                    .user__name {
+                        font-size: 16px;
+                        font-weight: 500;
+                        padding: 0px 15px;
+                        display: flex;
+                        align-items: center;
+
                         @include mobile {
                             display: none;
                         }
+                    }
+                }
+
+                .navbar__exit {
+                    padding: 10px;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    border: 1px solid #dedcdd;
+
+                    &:hover {
+                        background-color: #3c4154;
+                        color: #fff;
                     }
                 }
             }
@@ -90,53 +120,144 @@ img {
                
 
                 .searchForm {
-                    padding: 10px;
+                    padding: 15px;
                     background-color: #f5f5f5;
                     border-bottom: 1px solid #dedcdd;
+                    position: relative;
+
+                    .searchForm__icon {
+                        color: #b0b0b0;
+                        position: absolute;
+                        top: 27px;
+                        left: 25px;
+                        font-size: 14px;
+                    }
+
                     input {
                         background-color: #fafafa;
+                        padding: 10px 10px 10px 35px;
+                        border-radius: 20px;
+                        width: 100%;
+                        box-sizing: border-box;
+                        margin-bottom: 5px;
+                        border: 1px solid #dedcdd;
+                        
                     }
                 }
                 .userChat {
-                    background-color: brown;
+                    border-bottom: 1px solid #dedcdd;
                    
                    
                 }
             }
-            .chats {
+            .contacts {
+                overflow-y: scroll;
+                height: calc(100% - 125px);
+               /*  display: none; */
                
-               
+                .contacts__header {
+                    color: #58afd4;
+                    font-weight: 400;
+                    padding: 20px 0px 30px 15px;
+                }
             }
-            .userChat {
-                padding: 10px;
+            .contact {
+                padding: 15px;
                 display: flex;
-                align-items: center;
-                gap: 10px;
                 cursor: pointer;
+                border-bottom: 1px solid #dedcdd;
+                height: 90px;
+                box-sizing: border-box;
+               
+               
+               
                
                 
 
                 &:hover {
-                    background-color: cadetblue;
+                    background-color: #f5f5f5;
                 }
 
-                img {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    object-fit: cover;
+                .contact__img {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                    .contact__icon {
+                        color: #6ba175;
+                        position: absolute;
+                        bottom: 5px;
+                        left: 40px;
+                    }
                 }
 
-                .userChatInfo {
+                .contact__info {
+                    padding: 0px 10px 0px 20px;
+                    flex: 1 1 auto;
+                    overflow: hidden;
                    
-                   span {
-                    font-size: 18px;
-                    font-weight: 500;
-                   }
+               
 
-                   p {
+                    .contact__name {
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+
+                    .contact__message {
+                        font-size: 14px;
+                        color: #b0b0b0;
+                    }
+                }
+
+                .contact__date {
                     font-size: 14px;
-                   }
+                    min-width: 88px;
+                    display: flex;
+                    justify-content: flex-end;
+                }
+               
+            }
+        }
+
+
+
+
+        .user {
+            display: flex;
+
+            .user__img {
+                position: relative;
+            }
+
+            img {
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .user__icon {
+                color: #6ba175;
+                position: absolute;
+                top: 32px;
+                left: 40px;
+            }
+
+            .user__name {
+                font-size: 16px;
+                font-weight: 500;
+                padding: 0px 15px;
+                display: flex;
+                align-items: center;
+
+                @include mobile {
+                    display: none;
                 }
             }
         }
@@ -144,27 +265,48 @@ img {
 
 
 
+
         .chat {
             flex: 2;
             background-color: #f5f5f5;
-           
-
+          
             .chatInfo {
                 padding: 15px;
                 min-height: 50px;
-                position: relative;
+                display: flex;
                 border-bottom: 1px solid #dedcdd;
+               
+                .chatInfo__img {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
 
-                img {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    object-fit: cover;
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    .chatInfo__icon {
+                        color: #6ba175;
+                        position: absolute;
+                        top: 32px;
+                        left: 40px;
+                    }
                 }
+                
+                .chatInfo__name {
+                    font-size: 16px;
+                    font-weight: 500;
+                    padding: 0px 15px;
+                    display: flex;
+                    align-items: center;
+                }
+                
                 .chatNotification {
                     width: 50px;
                     height: 50px;
-                    border: 3px solid green;
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -177,7 +319,7 @@ img {
             .messages {
                 padding: 15px;
                 
-                height: calc(100% - 190px);
+                height: calc(100% - 202px); //190 - высота chatInfo + input + их паддинги
                 overflow-y: scroll;
                 background-color: #fafafa;
                 //190 - высота chatInfo + input + их паддинги
@@ -223,7 +365,8 @@ img {
                             align-items: flex-end;
 
                             p {
-                                background-color: blue;
+                                background-color: #3c4154;
+                                color: #fff;
                                 padding: 10px;
                                 max-width: max-content;
                             }
@@ -235,16 +378,31 @@ img {
             .input {
                 height: 50px;
                 background-color: #f5f5f5;
-                padding: 15px;
+                padding: 20px;
                 display: flex;
                 border-top: 1px solid #dedcdd;
+                position: relative;
 
-                input {
+                .input__field {
                     width: 100%;
+                    padding: 0px 0px 0px 15px;
+                    border-radius: 15px;
+                    border: 1px solid #dedcdd;
                 }
 
-                button {
+                .input__btn {
                     border: none;
+                    
+                    .input__icon {
+                        position: absolute;
+                        top: 35px;
+                        right: 40px;
+                        font-size: 20px;
+
+                       /*  &:hover {
+                            color: #f5f5f5;
+                        } */
+                    }
                 }
             }
         }

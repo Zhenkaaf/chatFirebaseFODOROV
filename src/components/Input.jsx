@@ -5,6 +5,10 @@ import { db } from "../firebase";
 import { useEffect } from "react";
 import addNotification from 'react-push-notification';
 import sound from './../sounds/soobshenie-telegram.mp3';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
+
 
 const Input = () => {
 
@@ -53,9 +57,12 @@ const Input = () => {
                 song.play();
                 addNotification({ // заменить например создать новую базу данных с одним сообщением, на него слушатель, перезавписывать каждый раз на новое
                     title: data.contact.displayName,
-                    subtitle: 'This is a subtitle',
                     message: (answer.value.length > 60) ? answer.value.slice(0, 65 - 1) + '…' : answer.value, 
-                    theme: 'darkblue',
+                    theme: 'light',
+                    duration: 5000,
+                    colorBottom: '#fff',
+                    backgroundTop: '#fff',
+                    backgroundBottom: '#3c4154',
                     native: false // when using native, your OS will handle theming.
                 });
             }, 3000);
@@ -69,8 +76,8 @@ const Input = () => {
 
     return (
         <div className="input">
-            <input type="text" placeholder="Type your message" onKeyDown={handleKeyDown} onChange={e => setText(e.target.value)} value={text} />
-            <button disabled={stateSendBtn} onClick={handleSend}>Send</button>
+            <input className="input__field" type="text" placeholder="Type your message" onKeyDown={handleKeyDown} onChange={e => setText(e.target.value)} value={text} />
+            <button className="input__btn" disabled={stateSendBtn} onClick={handleSend}><FontAwesomeIcon className="input__icon" icon={faPaperPlane} /></button>
         </div>
     )
 }

@@ -3,6 +3,8 @@ import { collection, onSnapshot, query } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 
 
 const Contacts = () => {
@@ -10,20 +12,20 @@ const Contacts = () => {
     const [contacts, setContacts] = useState([]);
     const { dispatch } = useContext(ChatContext);
     console.log(contacts);
-   
 
-   /*  if (contacts.length !=0) {
-        console.log(contacts[0].messages.slice(-1)[0].time.seconds);
-        let ttt = contacts[0].messages.slice(-1)[0].time.seconds;
-        let date = new Date( ttt * 1000 );
 
-        let month = date.getMonth() + 1;
-        let day = date.getDate();
-        let year = date.getFullYear();
-        let strYear = year.toString();
-        let lastTwoNumbersOfYear = strYear.slice(-2);
-        console.log(`${renameMonth[month]} ${day}, ${year}`);
-    } */
+    /*  if (contacts.length !=0) {
+         console.log(contacts[0].messages.slice(-1)[0].time.seconds);
+         let ttt = contacts[0].messages.slice(-1)[0].time.seconds;
+         let date = new Date( ttt * 1000 );
+ 
+         let month = date.getMonth() + 1;
+         let day = date.getDate();
+         let year = date.getFullYear();
+         let strYear = year.toString();
+         let lastTwoNumbersOfYear = strYear.slice(-2);
+         console.log(`${renameMonth[month]} ${day}, ${year}`);
+     } */
     const GetDate = (seconds) => {
         const renameMonth = {
             1: 'Jan',
@@ -39,14 +41,14 @@ const Contacts = () => {
             11: 'Nov',
             12: 'Dec'
         }
-        
-        let date = new Date( seconds * 1000 );
+
+        let date = new Date(seconds * 1000);
         let month = date.getMonth() + 1;
         let day = date.getDate();
         let year = date.getFullYear();
         return `${renameMonth[month]} ${day}, ${year}`;
     }
-      
+
 
     useEffect(() => { //получим объект с данными обновляющимися после каждого внесения изменения в firebase
         console.log('work');
@@ -57,8 +59,8 @@ const Contacts = () => {
                 users.push(doc.data());
             });
             setContacts(users);
-            
-         
+
+
         });
         return () => {
             unsubscribe();
@@ -71,7 +73,8 @@ const Contacts = () => {
     }
 
     return (
-        <div className="chats">
+        <div className="contacts">
+           <h2 className="contacts__header">Chats</h2> 
             {contacts.sort((a, b) => {
                 if (a.messages.length == 0) {
                     return 1;
@@ -83,13 +86,19 @@ const Contacts = () => {
                     return b.messages.slice(-1)[0].time - a.messages.slice(-1)[0].time;
                 }
             }).map((contact) => (
-                <div className="userChat" onClick={() => handleSelect(contact)} key={contact.uid}>
-                    <img src={contact.photoURL} alt="" />
-                    <div className="userChatInfo">
-                        <span>{contact.displayName}</span>
-                        {contact.messages.length ? <p>{contact.messages.slice(-1)[0].message}</p> : null}
-                        {contact.messages.length ? <p>{GetDate(contact.messages.slice(-1)[0].time.seconds)}</p> : null}
+                <div className="contact" onClick={() => handleSelect(contact)} key={contact.uid}>
+
+                    <div className="contact__img">
+                        <img src={contact.photoURL} alt="" />
+                        <FontAwesomeIcon className="contact__icon" icon={faCircleCheck} />
                     </div>
+
+                    <div className="contact__info">
+                        <p className="contact__name">{contact.displayName}</p>
+                        {contact.messages.length ? <p className="contact__message">{contact.messages.slice(-1)[0].message }</p> : null}
+                    </div>
+                    {contact.messages.length ? <p className="contact__date">{GetDate(contact.messages.slice(-1)[0].time.seconds)}</p> : null}
+
                 </div>
             ))
             }

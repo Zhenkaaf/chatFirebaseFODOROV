@@ -3,13 +3,18 @@ import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useEffect } from "react";
 import { ChatContext } from "../context/ChatContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
+  
 
 const Search = () => {
 
     const { dispatch } = useContext(ChatContext);
     const [searchName, setSearchName] = useState('');
     const [searchedContacts, setSearchedContacts] = useState(null);
+   
+  
 
     useEffect(() => {
         const handleSearch = async () => {
@@ -38,18 +43,20 @@ const Search = () => {
     return (
         <div className="search">
             <div className="searchForm">
-                <input type="text" placeholder="Search or start new chat" onChange={e => setSearchName(e.target.value) } value={searchName} />
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="searchForm__icon" />
+                <input type="text" placeholder="Search or start new chat" onChange={e => setSearchName(e.target.value) } onFocus={() => {}} value={searchName} />
             </div>
 
             {searchedContacts && searchedContacts.map((contact) => (
-                <div className="userChat" key={contact.uid} onClick={() => handleSelect(contact)}>
-                    <img src={contact.photoURL} alt="" />
-                    <div className="userChatInfo">
-                        <span>{contact.displayName}</span>
+                <div className="contact" key={contact.uid} onClick={() => handleSelect(contact)}>
+                    <div className="contact__img">
+                        <img src={contact.photoURL} alt="" />
+                    </div>
+                    <div className="contact__info">
+                        <p className="contact__name">{contact.displayName}</p>
                     </div>
                 </div>
             ))}
-
         </div>
     )
 }
