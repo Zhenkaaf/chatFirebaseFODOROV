@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 
 
-const Contacts = () => {
+const Contacts = ({displayNone}) => {
 
     const [contacts, setContacts] = useState([]);
     const { dispatch } = useContext(ChatContext);
@@ -72,8 +72,9 @@ const Contacts = () => {
         dispatch({ type: "CHANGE_CONTACT", payload: contact });
     }
 
+
     return (
-        <div className="contacts">
+        <div className={(displayNone ? 'displayNone' : '') + ' contacts'} >
            <h2 className="contacts__header">Chats</h2> 
             {contacts.sort((a, b) => {
                 if (a.messages.length == 0) {

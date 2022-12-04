@@ -14,7 +14,9 @@ const Chat = () => {
 
     return (
         <div className="chat">
-
+            <div className="chatNotification">
+                <Notifications className="test" position="top-right" />
+            </div>
             {data.contact.photoURL
                 ? <div className="chatInfo">
                     <div className="chatInfo__img">
@@ -25,12 +27,12 @@ const Chat = () => {
                     <p className="chatInfo__name">{data.contact?.displayName}</p>
                 </div>
 
-                : null}
+                : <div className="chatInfo">
+
+                </div>}
 
 
-            <div className="chatNotification">
-                <Notifications className="test" position="top-right" />
-            </div>
+
 
             <Messages />
             <Input />

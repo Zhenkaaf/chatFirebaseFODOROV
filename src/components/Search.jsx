@@ -6,15 +6,15 @@ import { ChatContext } from "../context/ChatContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-  
 
-const Search = () => {
+
+const Search = ({ setDisplayNone }) => {
 
     const { dispatch } = useContext(ChatContext);
     const [searchName, setSearchName] = useState('');
     const [searchedContacts, setSearchedContacts] = useState(null);
-   
-  
+
+
 
     useEffect(() => {
         const handleSearch = async () => {
@@ -43,8 +43,12 @@ const Search = () => {
     return (
         <div className="search">
             <div className="searchForm">
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="searchForm__icon" />
-                <input type="text" placeholder="Search or start new chat" onChange={e => setSearchName(e.target.value) } onFocus={() => {}} value={searchName} />
+                <FontAwesomeIcon icon={faMagnifyingGlass} className="searchForm__icon" />
+                <input type="text" placeholder="Search or start new chat"
+                    onChange={e => setSearchName(e.target.value)}
+                    onFocus={(e) => { setDisplayNone(true) }}
+                    onBlur={(e) => { setDisplayNone(false); setSearchName(''); }}
+                    value={searchName} />
             </div>
 
             {searchedContacts && searchedContacts.map((contact) => (
