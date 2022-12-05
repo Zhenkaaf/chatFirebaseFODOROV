@@ -1,8 +1,7 @@
-import { auth, db, provider } from '../firebase';
+import { auth, provider } from '../firebase';
 import gooImg from './../img/gooBtn.png';
 import { signInWithPopup } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore"; 
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -13,21 +12,8 @@ const Login = () => {
         const user = result.user;
         console.log('USSEEEEEEEEERRRR**OK===', user);
         navigate('/');
-       /*  return user; */
       })
-      /* .then(async(user) => {
-        await setDoc(doc(db, "users", user.uid), {
-          displayName: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-          uid: user.uid
-        });
-       
 
-        //await setDoc(doc(db, "userChats", user.uid), { 
-
-        //});
-      }) */
       .catch((error) => {
         const errorCode = error.code;
         console.log('ERRRRRORRRRR===', errorCode);
@@ -36,13 +22,12 @@ const Login = () => {
 
 
   return (
-    <div>
-      <div className="loginContainer">
-        <div className="loginWrapper">
-          <div className="loginTitle">Chat. Test task</div>
-          <div>Please log in with:</div>
-          <button className="loginBtn" onClick={signInGoogle}><img src={gooImg} alt="" />Sign in with Google</button>
-        </div>
+    <div className="login">
+      <div className="body">
+        <h2 className="login__title">Chat</h2>
+        <h3 className="login__title">Test task</h3>
+        <p>Please log in with:</p>
+        <button className="login__btn" onClick={signInGoogle}><img className="login__icon" src={gooImg} alt="" />Sign in with Google</button>
       </div>
     </div>
   )

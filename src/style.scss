@@ -25,23 +25,38 @@ img {
     vertical-align: bottom; //убирает стандартный отступ у картинкки
 }
 
-.loginContainer {
-    background-color: coral;
+.login {
+    background-color: #f5f5f5;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+   
 
-    .loginWrapper {
+    .body {
         background-color: white;
-        padding: 30px;
+        padding: 50px 100px 100px 100px;
+        border-radius: 10px;
+        border: 5px solid #dedcdd;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
 
-        .loginBtn {
+        .login__btn {
+            border: 5px solid #dedcdd;
+            background-color: #fff;
             margin-top: 20px;
-        }
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
 
-        .loginTitle {
-            font-size: 24px;
+            &:hover {
+                background-color: #dedcdd;
+            }
+            .login__icon {
+                width: 20px;
+                padding-right: 10px;
+            }
         }
     }
 }
@@ -322,12 +337,14 @@ img {
                     .message__info {
                         max-width: 80%;
                         padding-left: 15px;
+                        margin-bottom: 10px;
 
                         .message__text {
                             border-radius: 20px;
                             background-color: #3c4154;
                             color: #fff;
                             padding: 12px;
+                            margin-bottom: 5px;
                             max-width: max-content;
                         }
                         .message__date {
