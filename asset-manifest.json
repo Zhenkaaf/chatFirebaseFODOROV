@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/chatFirebaseFODOROV/static/css/main.cffb54a5.css",
+    "main.css": "/chatFirebaseFODOROV/static/css/main.f2b45edf.css",
     "main.js": "/chatFirebaseFODOROV/static/js/main.0379f892.js",
     "static/js/787.28cb0dcd.chunk.js": "/chatFirebaseFODOROV/static/js/787.28cb0dcd.chunk.js",
     "static/media/soobshenie-telegram.mp3": "/chatFirebaseFODOROV/static/media/soobshenie-telegram.95fc44f2bcbba80eac3e.mp3",
     "index.html": "/chatFirebaseFODOROV/index.html",
-    "main.cffb54a5.css.map": "/chatFirebaseFODOROV/static/css/main.cffb54a5.css.map",
+    "main.f2b45edf.css.map": "/chatFirebaseFODOROV/static/css/main.f2b45edf.css.map",
     "main.0379f892.js.map": "/chatFirebaseFODOROV/static/js/main.0379f892.js.map",
     "787.28cb0dcd.chunk.js.map": "/chatFirebaseFODOROV/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cffb54a5.css",
+    "static/css/main.f2b45edf.css",
     "static/js/main.0379f892.js"
   ]
 }
