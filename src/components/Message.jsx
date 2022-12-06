@@ -11,6 +11,7 @@ const Message = ({ messageInfo }) => {
     const { currentUser } = useContext(AuthContext);
     const { data } = useContext(ChatContext);
     const ref = useRef();
+    const refOwner = useRef();
 
     const GetDate = (seconds) => {
 
@@ -33,7 +34,8 @@ const Message = ({ messageInfo }) => {
     }
 
     useEffect(() => { // прокрутка к новому сообщению
-        ref.current?.scrollIntoView({ behavior: "smooth" })
+        ref.current?.scrollIntoView({ behavior: "smooth" });
+        refOwner.current?.scrollIntoView({ behavior: "smooth" })
     }, [messageInfo[1].message])
 
     {/* <div className={`message ${messageInfo[1].owner == 1 && "owner"}`}></div> */ }
@@ -49,7 +51,7 @@ const Message = ({ messageInfo }) => {
                     </div>
                 </div>
 
-                : <div ref={ref} className="message message_owner" >
+                : <div ref={refOwner} className="message message_owner" >
                     <div className="message__info message__info_owner">
                         <p className="message__text message__text_owner">{messageInfo[1].message}</p>
                         <p className="message__date message__date_owner">{GetDate(messageInfo[1].time.seconds)}</p>
