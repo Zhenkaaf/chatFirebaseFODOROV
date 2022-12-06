@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { ChatContext } from "../context/ChatContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { WindowContext } from "../context/ActiveWindows";
 
 
 
@@ -13,6 +14,7 @@ const Search = ({ setDisplayNone }) => {
     const { dispatch } = useContext(ChatContext);
     const [searchName, setSearchName] = useState('');
     const [searchedContacts, setSearchedContacts] = useState(null);
+    const { dispatchWindows } = useContext(WindowContext);
 
 
 
@@ -38,6 +40,11 @@ const Search = ({ setDisplayNone }) => {
     const handleSelect = (contact) => {
         dispatch({ type: "CHANGE_CONTACT", payload: contact });
         setSearchName('');
+
+        const windowInnerWidth = window.innerWidth;
+        if (windowInnerWidth < 1024) {
+            dispatchWindows({ type: "HIDE_CONTACTS"});
+        }
     }
 
     return (

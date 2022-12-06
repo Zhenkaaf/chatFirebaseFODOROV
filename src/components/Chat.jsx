@@ -5,11 +5,13 @@ import { ChatContext } from "../context/ChatContext";
 import { Notifications } from 'react-push-notification';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
+import { WindowContext } from "../context/ActiveWindows";
 
 
 const Chat = () => {
 
-    const { data } = useContext(ChatContext);
+    const { dispatchWindows } = useContext(WindowContext);
+    const { data, dispatch } = useContext(ChatContext);
 
 
     return (
@@ -19,6 +21,7 @@ const Chat = () => {
             </div>
             {data.contact.photoURL
                 ? <div className="chatInfo">
+                    <button className="chatInfo__btn" onClick={ () => {dispatchWindows({ type: "SHOW_CONTACTS"}); dispatch({ type: "DEL_CONTACT"});} }>backToContcts</button>
                     <div className="chatInfo__img">
                         <img src={data.contact.photoURL} alt="" />
                         <FontAwesomeIcon className="chatInfo__icon" icon={faCircleCheck} />
@@ -28,7 +31,7 @@ const Chat = () => {
                 </div>
 
                 : <div className="chatInfo">
-
+                    <button className="chatInfo__btn">backToContcts</button>
                 </div>}
 
 

@@ -17,6 +17,10 @@ export const ChatContextProvider = ({ children }) => { //ChatContextProvider - Ð
                 return {
                     contact: action.payload,
                 };
+                case "DEL_CONTACT":
+                return {
+                    contact: {}
+                };
             default:
                 return state;
         }

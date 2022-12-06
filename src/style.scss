@@ -5,7 +5,7 @@
 }
 
 @mixin tablet {
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
         @content;
     }
 }
@@ -74,9 +74,9 @@ img {
 
         .sidebar {
             flex: 1;
-
             border-right: 1px solid #dedcdd;
             overflow: hidden;
+           
 
             .navbar {
                 display: flex;
@@ -272,12 +272,23 @@ img {
         .chat {
             flex: 2;
             background-color: #f5f5f5;
+           /*  @include tablet {
+                display: none;
+            } */
 
             .chatInfo {
                 padding: 15px;
                 min-height: 50px;
                 display: flex;
                 border-bottom: 1px solid #dedcdd;
+
+                .chatInfo__btn {
+                    margin-right: 15px;
+                    display: none;
+                    @include tablet {
+                        display: block;
+                    }
+                }
 
                 .chatInfo__img {
                     position: relative;
