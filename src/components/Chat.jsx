@@ -7,6 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { WindowContext } from "../context/ActiveWindows";
 
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
+
 
 const Chat = () => {
 
@@ -21,7 +24,7 @@ const Chat = () => {
             </div>
             {data.contact.photoURL
                 ? <div className="chatInfo">
-                    <button className="chatInfo__btn" onClick={ () => {dispatchWindows({ type: "SHOW_CONTACTS"}); dispatch({ type: "DEL_CONTACT"});} }>backToContcts</button>
+                    <FontAwesomeIcon className="chatInfo__btn" icon={faArrowLeft} onClick={ () => {dispatchWindows({ type: "SHOW_CONTACTS"}); dispatch({ type: "DEL_CONTACT"});} }/>
                     <div className="chatInfo__img">
                         <img src={data.contact.photoURL} alt="" />
                         <FontAwesomeIcon className="chatInfo__icon" icon={faCircleCheck} />
