@@ -8,7 +8,6 @@ import { ChatContext } from "../context/ChatContext";
 
 const Message = ({ messageInfo }) => {
 
-    const { currentUser } = useContext(AuthContext);
     const { data } = useContext(ChatContext);
     const ref = useRef();
    

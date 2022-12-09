@@ -59,12 +59,13 @@ const Input = () => {
                     message: (answer.value.length > 60) ? answer.value.slice(0, 65 - 1) + '…' : answer.value, 
                     theme: 'light',
                     duration: 5000,
-                    colorBottom: '#fff',
-                    backgroundTop: '#fff',
-                    backgroundBottom: '#3c4154',
+                    colorTop: '#fff',
+                    colorBottom: '#3c4154',
+                    backgroundTop: '#3c4154',
+                    backgroundBottom: '#fff',
                     native: false // when using native, your OS will handle theming.
                 });
-            }, 3000);
+            }, 10000);
         }
 
         catch (err) {

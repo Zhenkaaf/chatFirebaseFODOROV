@@ -86,6 +86,10 @@ img {
                 height: 50px;
                 padding: 15px;
 
+                @include mobile {
+                    padding: 15px 15px 0px 15px;
+               }
+
                 .user {
                     display: flex;
 
@@ -140,6 +144,7 @@ img {
                     background-color: #f5f5f5;
                     border-bottom: 1px solid #dedcdd;
                     position: relative;
+                    
 
                     .searchForm__icon {
                         color: #b0b0b0;
@@ -178,6 +183,10 @@ img {
                 color: #58afd4;
                 font-weight: 400;
                 padding: 20px 0px 30px 15px;
+
+                @include mobile {
+                     padding: 10px 0px 0px 15px;
+                }
             }
 
             .contact {
@@ -225,6 +234,7 @@ img {
                     .contact__message {
                         font-size: 14px;
                         color: #b0b0b0;
+                        line-height: 1.4;
                     }
                 }
 

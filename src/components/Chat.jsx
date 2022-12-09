@@ -6,7 +6,6 @@ import { Notifications } from 'react-push-notification';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { WindowContext } from "../context/ActiveWindows";
-
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -20,7 +19,7 @@ const Chat = () => {
     return (
         <div className="chat">
             <div className="chatNotification">
-                <Notifications className="test" position="top-right" />
+                <Notifications className="test" position="top-right" /> {/* запуск с компонента input */}
             </div>
             {data.contact.photoURL
                 ? <div className="chatInfo">
@@ -36,8 +35,6 @@ const Chat = () => {
                 : <div className="chatInfo">
                     <button className="chatInfo__btn">backToContcts</button>
                 </div>}
-
-
 
 
             <Messages />
