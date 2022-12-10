@@ -1,17 +1,13 @@
 import { useEffect, useRef } from "react";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
-
-
 
 
 const Message = ({ messageInfo }) => {
 
     const { data } = useContext(ChatContext);
     const ref = useRef();
-   
-console.log(typeof(messageInfo[1].message));
+
     const GetDate = (seconds) => {
 
         let date = new Date(seconds * 1000);
@@ -36,70 +32,16 @@ console.log(typeof(messageInfo[1].message));
         ref.current?.scrollIntoView({ behavior: "smooth" });
     }, [messageInfo[1].message])
 
-    {/* <div className={`message ${messageInfo[1].owner == 1 && "owner"}`}></div> */ }
+
     return (
-       
-        
-
-                <div ref={ref} className={`message ${messageInfo[1].owner == 0 && 'message_owner'}`} >
-                    {messageInfo[1].owner == 1 && <img className="message__photo" src={data.contact.photoURL} alt="" />}
-                    <div className="message__info">
-                        <p className="message__text">{messageInfo[1].message}</p>
-                        <p className="message__date">{GetDate(messageInfo[1].time.seconds)}</p>
-                    </div>
-                </div>
-
-                
-                
-                
-                
-                
-
-
-
+        <div ref={ref} className={`message ${messageInfo[1].owner == 0 && 'message_owner'}`} >
+            {messageInfo[1].owner == 1 && <img className="message__photo" src={data.contact.photoURL} alt="" />}
+            <div className="message__info">
+                <p className="message__text">{messageInfo[1].message}</p>
+                <p className="message__date">{GetDate(messageInfo[1].time.seconds)}</p>
+            </div>
+        </div>
     )
 }
 
 export default Message;
-
-
-/* {<div ref={ref} className="message-owner" >
-                    <div className="message-owner__info">
-                        <div className="message-owner__text">
-                            <p>{messageInfo[1].message}</p>
-                        </div>
-                        <div className="message-owner__date">
-                            <p>{GetDate(messageInfo[1].time.seconds)}</p>
-                        </div>
-
-                    </div>
-
-
-
-                </div>} */
-
-
-               /*  <div style={{backgroundColor: 'red'}}>
-            {messageInfo[1].owner == 1 ?
-
-                <div ref={ref} className="message" >
-                    <img className="message__photo" src={data.contact.photoURL} alt="" />
-                    <div className="message__info">
-                        <p className="message__text">{messageInfo[1].message}</p>
-                        <p className="message__date">{GetDate(messageInfo[1].time.seconds)}</p>
-                    </div>
-                </div>
-
-                : <div ref={refOwner} className="message message_owner" >
-                    <div className="message__info message__info_owner">
-                        <p className="message__text message__text_owner">{messageInfo[1].message}</p>
-                        <p className="message__date message__date_owner">{GetDate(messageInfo[1].time.seconds)}</p>
-                    </div>
-                </div>
-                
-                
-                
-                
-
-            }
-        </div> */

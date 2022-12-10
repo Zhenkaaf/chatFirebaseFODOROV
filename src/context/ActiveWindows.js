@@ -26,7 +26,7 @@ export const WindowContextProvider = ({ children }) => { //ChatContextProvider -
                     sidebar: true,
                     chat: true
                 };
-                case "HIDE_CHAT":
+            case "HIDE_CHAT":
                 return {
                     sidebar: true,
                     chat: false

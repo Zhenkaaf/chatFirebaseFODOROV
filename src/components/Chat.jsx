@@ -23,7 +23,7 @@ const Chat = () => {
             </div>
             {data.contact.photoURL
                 ? <div className="chatInfo">
-                    <FontAwesomeIcon className="chatInfo__btn" icon={faArrowLeft} onClick={ () => {dispatchWindows({ type: "SHOW_CONTACTS"}); dispatch({ type: "DEL_CONTACT"});} }/>
+                    <FontAwesomeIcon className="chatInfo__btn" icon={faArrowLeft} onClick={() => { dispatchWindows({ type: "SHOW_CONTACTS" }); dispatch({ type: "DEL_CONTACT" }); }} />
                     <div className="chatInfo__img">
                         <img src={data.contact.photoURL} alt="" />
                         <FontAwesomeIcon className="chatInfo__icon" icon={faCircleCheck} />

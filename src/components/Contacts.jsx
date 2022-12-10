@@ -11,13 +11,10 @@ import { WindowContext } from "../context/ActiveWindows";
 
 const Contacts = ({ displayNone }) => {
 
-   
-   
-
     const [contacts, setContacts] = useState([]);
     const { dispatch } = useContext(ChatContext);
     const { dispatchWindows } = useContext(WindowContext);
-    
+
 
     const GetDate = (seconds) => {
         const renameMonth = {
@@ -51,9 +48,8 @@ const Contacts = ({ displayNone }) => {
                 users.push(doc.data());
             });
             setContacts(users);
-
-
         });
+
         return () => {
             unsubscribe();
         }
@@ -65,7 +61,7 @@ const Contacts = ({ displayNone }) => {
 
         const windowInnerWidth = window.innerWidth;
         if (windowInnerWidth <= 1024) {
-            dispatchWindows({ type: "HIDE_CONTACTS"});
+            dispatchWindows({ type: "HIDE_CONTACTS" });
         }
     }
 

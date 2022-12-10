@@ -9,7 +9,7 @@ const Messages = () => {
     const [messages, setMessages] = useState(null);
     const { data } = useContext(ChatContext);
 
-   
+
     useEffect(() => {
 
         if (!data.contact.uid) {
@@ -32,7 +32,6 @@ const Messages = () => {
             {messages && messages.map((m, index) => (
                 <Message key={index} messageInfo={m} />
             ))}
-            
         </div>
     )
 }

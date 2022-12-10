@@ -9,14 +9,14 @@ const Home = () => {
     const { windows, dispatchWindows } = useContext(WindowContext);
     const [windowWidth, setWindowWidth] = useState(window.screen.width);
     const { data } = useContext(ChatContext);
-    console.log(!Object.keys(data.contact).length);
+    //console.log(!Object.keys(data.contact).length); проверка на пустоту объекта
 
 useEffect(() => {
     window.onresize = () => {setWindowWidth(window.screen.width)};
     if (windowWidth > 1024) {
         dispatchWindows({type: "SHOW_ALL"});
     }
-    if (windowWidth <= 1024 && !Object.keys(data.contact).length) {
+    if (windowWidth <= 1024 && !Object.keys(data.contact).length) { 
         dispatchWindows({type: "HIDE_CHAT"});
     }
     if (windowWidth <= 1024 && !Object.keys(data.contact).length == false) {

@@ -43,7 +43,7 @@ const Search = ({ setDisplayNone }) => {
 
         const windowInnerWidth = window.innerWidth;
         if (windowInnerWidth < 1024) {
-            dispatchWindows({ type: "HIDE_CONTACTS"});
+            dispatchWindows({ type: "HIDE_CONTACTS" });
         }
     }
 
